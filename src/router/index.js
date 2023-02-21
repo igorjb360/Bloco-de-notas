@@ -18,13 +18,13 @@ const router = createRouter({
       component: List,  
     },
     {
-      path: "/form/:index",
-      name: "form",
+      path: "/form",
+      name: "create",
       component: Form,
     },
     {
-      path: "/form",
-      name: "create",
+      path: "/form/:index",
+      name: "form",
       component: Form,
     },
   ],

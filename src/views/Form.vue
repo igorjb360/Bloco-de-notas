@@ -43,28 +43,33 @@ export default {
   },
 
   created() {
-    console.log("oiiiiii")
     if(this.$route.params.index === 0 || this.$route.params.index !== undefined){
       this.methodSave = "update";
       let tasks = JSON.parse(localStorage.getItem("tasks"));
       this.form = tasks[this.$route.params.index];
-      console.log("aeeee")
     }
   },
 
-  mounted() {
-   console.log(this.$route.params.index);
-},
+//   mounted() {
+//    console.log(this.$route.params.index);
+// },
 
   methods: {
     saveTask() {
+      if(this.methodSave === "update"){
+        let tasks = JSON.parse(localStorage.getItem("tasks"));
+        tasks[this.$route.params.index] = this.form;
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        this.$router.push({ name: "list" });
+        return;
+      }
+
       let tasks = localStorage.getItem("tasks")
         ? JSON.parse(localStorage.getItem("tasks"))
         : [];
       tasks.push(this.form);
       localStorage.setItem("tasks", JSON.stringify(tasks));
       this.$router.push({ name: "list" });
-      console.log("tchaauuu")
     },
   },
 };
